@@ -13,6 +13,7 @@ import {
 import {Iconfont} from "../../statics/iconfont/iconfont";
 import {CSSTransition} from "react-transition-group";
 import {connect} from 'react-redux';
+import {actionCreators} from './store'
 
 
 const Header = (props) => {
@@ -106,15 +107,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleInputFocus() {
-            const action = {
-                type: 'search_focus'
-            }
+            const action = actionCreators.searchFocus()
             dispatch(action)
         },
         handleInputBlur() {
-            const action = {
-                type: 'search_blur'
-            }
+            const action = actionCreators.searchBlur()
             dispatch(action)
         }
     }
