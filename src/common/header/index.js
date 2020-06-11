@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
     HeaderWrapper,
     Logo,
@@ -7,7 +7,12 @@ import {
     NavSearch,
     Addition,
     Bottom,
-    SearchWrapper
+    SearchInfo,
+    SearchWrapper,
+    SearchInfoTitle,
+    SearchInfoSwitch,
+    SearchInfoItem,
+    SearchInfoList
 }
     from './style';
 import {Iconfont} from "../../statics/iconfont/iconfont";
@@ -15,7 +20,29 @@ import {CSSTransition} from "react-transition-group";
 import {connect} from 'react-redux';
 import {actionCreators} from './store'
 
+const getListArea = (show) => {
+    if (show) {
+        return (
+            <SearchInfo>
+                <SearchInfoTitle>
+                    热门搜索
+                    <SearchInfoSwitch>换一批</SearchInfoSwitch>
+                </SearchInfoTitle>
+                <SearchInfoList>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
 
+                </SearchInfoList>
+            </SearchInfo>
+        )
+    } else {
+        return null
+    }
+}
 const Header = (props) => {
     return (
         <HeaderWrapper>
@@ -43,6 +70,7 @@ const Header = (props) => {
                         </NavSearch>
                     </CSSTransition>
                     <span className={props.focused ? 'focused iconfont' : 'iconfont'}>&#xe60d;</span>
+                    {getListArea(props.focused)}
                 </SearchWrapper>
             </Nav>
             <Addition>
