@@ -1,3 +1,5 @@
 export const SEARCH_FOCUS = 'HEADER/SEARCH_FOCUS';
 
 export const SEARCH_BLUR = 'HEADER/SEARCH_BLUR';
+
+export const GET_LIST = 'HEADER/GET_LIST';
