@@ -85,6 +85,7 @@ import {actionCreators} from './store'
 // }
 class Header extends Component {
     render() {
+        const {focused, handleInputFocus, handleInputBlur} = this.props;
         return (
             <HeaderWrapper>
                 <Iconfont/>
@@ -103,15 +104,15 @@ class Header extends Component {
                         <span className="iconfont">&#xe636;</span>
                     </NavItem>
                     <SearchWrapper>
-                        <CSSTransition in={this.props.focused} timeout={200} classNames="slide">
-                            <NavSearch className={this.props.focused ? 'focused' : ''}
-                                       onFocus={this.props.handleInputFocus}
-                                       onBlur={this.props.handleInputBlur}
+                        <CSSTransition in={focused} timeout={200} classNames="slide">
+                            <NavSearch className={focused ? 'focused' : ''}
+                                       onFocus={handleInputFocus}
+                                       onBlur={handleInputBlur}
                             >
                             </NavSearch>
                         </CSSTransition>
-                        <span className={this.props.focused ? 'focused iconfont' : 'iconfont'}>&#xe60d;</span>
-                        {this.getListArea(this.props.focused)}
+                        <span className={focused ? 'focused iconfont' : 'iconfont'}>&#xe60d;</span>
+                        {this.getListArea()}
                     </SearchWrapper>
 
                 </Nav>
@@ -126,8 +127,9 @@ class Header extends Component {
         )
     }
 
-    getListArea(show) {
-        if (show) {
+    getListArea() {
+        const {focused, list} = this.props;
+        if (focused) {
             return (
                 <SearchInfo>
                     <SearchInfoTitle>
@@ -135,7 +137,7 @@ class Header extends Component {
                         <SearchInfoSwitch>换一批</SearchInfoSwitch>
                     </SearchInfoTitle>
                     <SearchInfoList>
-                        {this.props.list.map((item) => {
+                        {list.map((item) => {
                             return <SearchInfoItem key={item}>{item}</SearchInfoItem>
                         })}
                     </SearchInfoList>
